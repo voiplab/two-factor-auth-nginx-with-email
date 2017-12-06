@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  nginx:
+    depends_on:
+       - nodejs
+    environment:
+       TZ: "Europe/Moscow"
+    container_name: nginx
+    image: nginx:2auth
+    command: bash -c '/usr/local/bin/start.sh' ;
+    restart: always
+    volumes:
+      - ./nginx/conf/access_control:/etc/nginx/access_control
+      - ./nginx/conf/conf.d:/etc/nginx/conf.d
+      - ./nginx/bin:/usr/local/bin
+    ports:
+      - "80:80"
+
+  nodejs:
+    container_name: nodejs
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+     TZ: "Europe/Moscow"
+     NODE_ENV: "production"
+    restart: always
+    expose:
+     - "3000"
+    volumes:
+      - ./app:/home/node/app
+      - ./nginx/conf/access_control/dynamic.conf:/home/node/app/dynamic.conf
+    command: "npm start"

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+ h1= title
+ if locals.mailbox
+  p Message sent. Please check your mailbox 
+   a(href="http://email.muranosoft.com") #{mailbox}
+ else
+  p Your IP address: #{ip_address}
+  p Enter your email address to get access 
+  form(name="sendmail", method="post")
+   div.input
+    input(type="text", name="mailbox")
+    span.label @#{domain}
+    p
+   div.action
+    input(type="submit", value="Get verification code")
