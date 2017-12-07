@@ -1,6 +1,7 @@
 Docker repo
+=
 
-**2Auth is a docker container using nginx and nodejs to protect your internal resources.
+**2Auth is a docker container using nginx and nodejs to protect your internal resources.**
 
 1. Generate nginx:2auth image from Docker file
 
