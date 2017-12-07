@@ -4,8 +4,8 @@
 
 ```docker build -t nginx:2auth .```
 
-2. Edit app/config.js
+2. Edit *app/config.js* and save changes
 
-2. Start docker-compose
+3. Start docker-compose
 
-docker-compose up -d
+```docker-compose up -d```
