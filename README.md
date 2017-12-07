@@ -2,7 +2,7 @@
 
 1. Generate nginx:2auth image from Docker file
 
-docker build -t nginx:2auth .
+```docker build -t nginx:2auth .```
 
 2. Edit app/config.js
 
