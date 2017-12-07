@@ -2,10 +2,14 @@
 
 1. Generate nginx:2auth image from Docker file
 
-```docker build -t nginx:2auth .```
+```bash
+docker build -t nginx:2auth .
+```
 
-2. Edit *app/config.js* and save changes
+2. Edit **app/config.js** and save changes
 
 3. Start docker-compose
 
-```docker-compose up -d```
+```bash
+docker-compose up -d
+```
