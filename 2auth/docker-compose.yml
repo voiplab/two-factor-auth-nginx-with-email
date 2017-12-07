@@ -30,4 +30,4 @@ services:
     volumes:
       - ./app:/home/node/app
       - ./nginx/conf/access_control/dynamic.conf:/home/node/app/dynamic.conf
-    command: "npm start"
+    command: "/home/node/app/startapp.sh"
