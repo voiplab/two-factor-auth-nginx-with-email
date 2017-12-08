@@ -23,19 +23,21 @@ router.post('/', function(req, res, next) {
         let ip = helper.getClientIP(req);
         let code = helper.db_push(ip, false);
 
-        if (helper.mail_sendMessage(mailbox, code)) {
-            res.render('index', {
-                title: config.ui_title,
-                maillink: config.ui_mail_link,
-                mailbox: mailbox
-
-            });
-        } else {
-            res.render('message', {
-                title: config.ui_title,
-                message: config.ui_message_send_mail_failed
-            });
-        }
+        helper.mail_sendMessage(mailbox, code, sent => {
+            if (sent) {
+                res.render('index', {
+                    title: config.ui_title,
+                    maillink: config.ui_mail_link,
+                    mailbox: mailbox
+    
+                });
+            } else {
+                res.render('message', {
+                    title: config.ui_title,
+                    message: config.ui_message_send_mail_failed
+                });
+            }
+        });
     } else {
         res.render('message', {
             title: config.company_name,
