@@ -16,6 +16,7 @@ exports.mail_sendMessage = function(emailAddress, code, cb) {
         if (error) {
             console.log(error);
             cb(false);
+            return;
         }
         console.log('Message sent: %s', info.messageId);
         cb(true);
@@ -57,6 +58,7 @@ exports.db_writeConfig = function() {
     });
 
     //Write nginx config
+    fs.
     fs.writeFile(config.app_nginx_filename, file_auth_content, (err) => {
         if (err) console.log(`ERROR: nginx/${config.nginx_filename} not saved!`);
         console.log(`nginx/${config.nginx_filename} saved!`);
