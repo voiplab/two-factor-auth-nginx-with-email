@@ -15,6 +15,7 @@ services:
       - ./nginx/bin:/usr/local/bin
     ports:
       - "80:80"
+      - "443":"443"
 
   nodejs:
     container_name: nodejs
