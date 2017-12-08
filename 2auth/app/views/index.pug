@@ -4,7 +4,7 @@ block content
  h1= title
  if locals.mailbox
   p Message sent. Please check your mailbox 
-   a(href="http://email.muranosoft.com") #{mailbox}
+   a(href= maillink) #{mailbox}
  else
   p Your IP address: #{ip_address}
   p Enter your email address to get access 

@@ -5,40 +5,41 @@ var router = express.Router();
 var dirty = require('dirty');
 var db = dirty('user.db');
 var helper = require('../app_helper');
-var db_helper = require('../app_db_helper');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     let ip = helper.getClientIP(req);
     res.render('index', {
-        title: config.title,
-        domain: config.domain,
+        title: config.ui_title,
+        domain: config.ui_domain,
         ip_address: ip
     });
 });
 
 router.post('/', function(req, res, next) {
-    let mailbox = req.body.mailbox.concat('@' + config.domain);
+    let mailbox = req.body.mailbox.concat('@' + config.ui_domain);
 
-    if (helper.validateEmail(mailbox)) {
+    if (helper.mail_validateEmail(mailbox)) {
         let ip = helper.getClientIP(req);
-        let code = db_helper.push(ip, false);
+        let code = helper.db_push(ip, false);
 
-        if (helper.sendEmail(mailbox, code)) {
+        if (helper.mail_sendMessage(mailbox, code)) {
             res.render('index', {
-                title: config.title,
+                title: config.ui_title,
+                maillink: config.ui_mail_link,
                 mailbox: mailbox
+
             });
         } else {
             res.render('message', {
-                title: config.title,
-                message: config.message_send_mail_failed
+                title: config.ui_title,
+                message: config.ui_message_send_mail_failed
             });
         }
     } else {
         res.render('message', {
             title: config.company_name,
-            message: config.message_validator_email_error
+            message: config.ui_message_validator_email_error
         });
     }
 });
@@ -47,19 +48,19 @@ router.get('/confirm/:code', function(req, res, next) {
     let code = req.params['code'];
     let ip = helper.getClientIP(req);
 
-    //Проверяем что код соответствует IP, с которого приходил запрос
-    if (db_helper.verifyCode(ip, code)) {
+    //Request IP address should equal IP address code confirmation
+    if (helper.db_verifyCode(ip, code)) {
         //Adding to white list
-        db_helper.push(ip, true);
-        db_helper.writeConfig();
+        helper.db_push(ip, true);
+        helper.db_writeConfig();
         res.render('message', {
-            title: config.title,
-            message: config.message_confirm_success
+            title: config.ui_title,
+            message: config.ui_message_confirm_success
         });
     } else {
         res.render('message', {
-            title: config.title,
-            message: config.message_confirm_fail
+            title: config.ui_title,
+            message: config.ui_message_confirm_fail
         });
     }
 });

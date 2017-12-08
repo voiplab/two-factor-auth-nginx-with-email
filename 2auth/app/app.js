@@ -7,13 +7,13 @@ var bodyParser = require('body-parser');
 var schedule = require('node-schedule');
 var index = require('./routes/index');
 var moment = require('moment');
-var db_helper = require('./app_db_helper');
+var helper = require('./app_helper');
 
 var app = express();
 
 //Scheduler
-var j = schedule.scheduleJob('1 * * * *', function() {
-    db_helper.disableAccessCron();
+var j = schedule.scheduleJob('* * * * *', function() {
+    helper.db_disableAccessCron();
 });
 
 // view engine setup
