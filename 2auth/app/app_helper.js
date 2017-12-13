@@ -58,10 +58,25 @@ exports.db_writeConfig = function() {
     });
 
     //Write nginx config
-    fs.writeFile(config.app_nginx_filename, file_auth_content, (err) => {
-        if (err) console.log(`ERROR: nginx config not saved!`);
-        console.log(`nginx config saved!`);
-    });
+    fs.readFile(config.app_nginx_filename, 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }
+        if (data != file_auth_content)
+        {
+            fs.writeFile(config.app_nginx_filename, file_auth_content, (err) => {
+                if (err) { 
+                    return console.log(err); 
+                }
+                console.log(`nginx: config saved!`);
+            });
+        }
+        else
+        {
+            console.log('nginx: nothing changed');
+        }
+      });
+    
     exports.db_showall();
 }
 
