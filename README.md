@@ -35,7 +35,7 @@ secure.yourdomain.com - private area
 sudo docker-compose up -d
 ```
 
-**Additional commands
+**Additional commands**
 
 List containers
 
