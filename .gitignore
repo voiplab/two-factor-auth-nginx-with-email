@@ -1,5 +1,4 @@
 node_modules
-2auth/app/dynamic\.conf
 *.db
 .vscode
 2auth/nginx/conf/access_control/dynamic\.conf
