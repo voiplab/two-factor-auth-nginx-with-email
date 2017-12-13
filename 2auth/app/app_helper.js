@@ -59,8 +59,8 @@ exports.db_writeConfig = function() {
 
     //Write nginx config
     fs.writeFile(config.app_nginx_filename, file_auth_content, (err) => {
-        if (err) console.log(`ERROR: nginx/${config.nginx_filename} not saved!`);
-        console.log(`nginx/${config.nginx_filename} saved!`);
+        if (err) console.log(`ERROR: nginx config not saved!`);
+        console.log(`nginx config saved!`);
     });
     exports.db_showall();
 }
