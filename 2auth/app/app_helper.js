@@ -82,7 +82,7 @@ exports.db_verifyCode = function(ip, code) {
     return (code == db.get(ip).code) && !db.get(ip).grant_permission;
 }
 
-exports.db_disableAccessCron = function(min) {
+exports.db_disableAccessCron = function() {
     db.forEach(function(key, val) {
         if (val.grant_permission == true) {
             if (moment().diff(val.datetime, 'minutes') > config.app_expire_time)
