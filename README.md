@@ -13,23 +13,44 @@ https://docs.docker.com/compose/install/#prerequisites
 ```bash
 cd docker\2Auth
 ```
-2. Generate nginx:2auth image from Docker file
+
+3. Generate nginx:2auth image from Docker file
 
 ```bash
-docker build -t nginx:2auth .
+sudo docker build -t nginx:2auth .
 ```
 
-2. Edit **2Auth/app/config.js** and save changes
+4. Edit **2Auth/app/config.js** and save changes
 
-2. Edit **2Auth/nginx/default.conf** and save changes
+5. Edit **2Auth/nginx/default.conf** and save changes
 
 ```
 auth.yourdomain.com - authorization site
 secure.yourdomain.com - private area
 ```
 
-3. Start docker-compose
+6. Start docker-compose
 
 ```bash
-docker-compose up -d
+sudo docker-compose up -d
+```
+
+**Additional commands
+
+List containers
+
+```bash
+docker ps 
+```
+
+Attach to nginx container
+
+```bash
+docker exec -i -t nginx /bin/bash
+```
+
+Attach to nodejs container
+
+```bash
+docker exec -i -t nodejs /bin/bash
 ```

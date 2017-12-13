@@ -106,14 +106,15 @@ exports.db_verifyCode = function(ip, code) {
 };
 
 exports.db_disableAccessCron = function() {
+  console.log('Cron started');
   db.forEach(function(key, val) {
     if (val.grant_permission == true) {
       if (moment().diff(val.datetime, "minutes") > config.app_expire_time)
         //Generate a new uuid to disable reusing a link into mailbox
         exports.db_push(key, false);
-      exports.db_writeConfig();
     }
   });
+  exports.db_writeConfig();
 };
 
 ////////////////////// COMMON HELPER ////////////////////
