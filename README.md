@@ -23,8 +23,10 @@ docker build -t nginx:2auth .
 
 2. Edit **2Auth/nginx/default.conf** and save changes
 
+```
 auth.yourdomain.com - authorization site
 secure.yourdomain.com - private area
+```
 
 3. Start docker-compose
 
