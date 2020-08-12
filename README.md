@@ -6,6 +6,7 @@ Docker repo
 1. Install docker and docker-compose
 
 https://docs.docker.com/engine/installation/
+
 https://docs.docker.com/compose/install/#prerequisites
 
 2. Change working directory
